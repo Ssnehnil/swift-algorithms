@@ -8,6 +8,16 @@
 import XCTest
 
 class SortingTest: XCTestCase {
+    
+    func makeArray(number: Int) -> [Int] {
+        var newArray: [Int] = []
+        var done = 0
+        while done < number {
+            newArray.append(Int.random(in: 1...1000))
+            done = done + 1
+        }
+        return newArray
+    }
 
     func testBubbleSortWithUnsortedIntegerArrayReturnsSortedIntegerArray() {
         //arrange
@@ -34,6 +44,60 @@ class SortingTest: XCTestCase {
         for testCase in testCases {
             let actual = sorting.quickSort(testCase.input)
             XCTAssertEqual(actual, testCase.expected)
+        }
+    }
+    
+    func testBubbleSortPerformanceWith5() {
+        let sorting = Sorting()
+        let testArray = makeArray(number: 5)
+        
+        measure {
+            _ = sorting.bubbleSort(testArray)
+        }
+    }
+    
+    func testBubbleSortPerformanceWith10() {
+        let sorting = Sorting()
+        let testArray = makeArray(number: 10)
+        
+        measure {
+            _ = sorting.bubbleSort(testArray)
+        }
+    }
+    
+    func testBubbleSortPerformanceWith100() {
+        let sorting = Sorting()
+        let testArray = makeArray(number: 100)
+        
+        measure {
+            _ = sorting.bubbleSort(testArray)
+        }
+    }
+    
+    func testQuickSortPerformanceWith5() {
+        let sorting = Sorting()
+        let testArray = makeArray(number: 5)
+        
+        measure {
+            _ = sorting.quickSort(testArray)
+        }
+    }
+    
+    func testQuickSortPerformanceWith10() {
+        let sorting = Sorting()
+        let testArray = makeArray(number: 10)
+        
+        measure {
+            _ = sorting.quickSort(testArray)
+        }
+    }
+    
+    func testQuickSortPerformanceWith100() {
+        let sorting = Sorting()
+        let testArray = makeArray(number: 100)
+        
+        measure {
+            _ = sorting.quickSort(testArray)
         }
     }
 }
